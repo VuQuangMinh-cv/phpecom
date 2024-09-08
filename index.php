@@ -1,4 +1,6 @@
-<?php include("includes/header.php")?>
+<?php 
+session_start();
+include("includes/header.php")?>
    <h1>Hell word</h1>
          <div class="py-5">
             <div class="container">

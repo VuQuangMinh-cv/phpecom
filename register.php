@@ -1,5 +1,14 @@
 <?php 
 session_start();
+
+if (isset($_SESSION["auth"]))
+{
+    $_SESSION["message"] = "You are already logged in";
+    header('Location: index.php');
+    exit();
+}
+
+
 include("includes/header.php")?>
 
 <div class="py-5">
@@ -55,4 +64,4 @@ include("includes/header.php")?>
     </div>
 </div>
 </div>
-<?php include("includes/footer.php")?
+<?php include("includes/footer.php")?>
