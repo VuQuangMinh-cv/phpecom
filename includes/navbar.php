@@ -15,17 +15,26 @@
         <?php
           if(isset($_SESSION['auth']))
           {
-            ?>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?= $_SESSION['auth_user']['name']; ?>
-                  </a>
-                  <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
-                </ul>
+            // Kiểm tra nếu là admin thì hiển thị nút Dashboard
+            if($_SESSION['role_as'] == 1)
+            {
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="../phpecom/admin/category.php">Dashboard</a>
               </li>
+              <?php
+            }
+            ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <?= $_SESSION['auth_user']['name']; ?>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
+              </ul>
+            </li>
             <?php
           }
           else
@@ -39,7 +48,7 @@
               </li>
             <?php
           }
-          ?>
+        ?>
       </ul>
     </div>
   </div>
