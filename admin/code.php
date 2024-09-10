@@ -224,41 +224,40 @@ else if(isset( $_POST["update_product_btn"]))
         redirect("edit-product.php?id=$product_id", "Something went wrong");
     }
 }
-else
+// else if (isset($_POST['update_user_btn'])) {
+//     $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
+//     $name = mysqli_real_escape_string($con, $_POST['name']);
+//     $email = mysqli_real_escape_string($con, $_POST['email']);
+//     $phone = mysqli_real_escape_string($con, $_POST['phone']);
+//     $role_as = mysqli_real_escape_string($con, $_POST['role_as']);
+
+//     // Truy vấn để kiểm tra email có trùng lặp không
+//     $email_check_query = "SELECT * FROM users WHERE email='$email' AND id != '$user_id'";
+//     $email_check_query_run = mysqli_query($con, $email_check_query);
+
+//     if (mysqli_num_rows($email_check_query_run) > 0) {
+//         $_SESSION['message'] = "Email đã tồn tại";
+//         header("Location: edit_user.php?id=$user_id");
+//         exit();
+//     } else {
+//         // Cập nhật thông tin người dùng
+//         $update_query = "UPDATE users SET name='$name', email='$email', phone='$phone', role_as='$role_as' WHERE id='$user_id'";
+//         $update_query_run = mysqli_query($con, $update_query);
+
+//         if ($update_query_run) {
+//             $_SESSION['message'] = "Cập nhật thông tin người dùng thành công";
+//             header("Location: users.php");
+//             exit();
+//         } else {
+//             $_SESSION['message'] = "Cập nhật thất bại";
+//             header("Location: edit_user.php?id=$user_id");
+//             exit();
+//         }
+//     }
+// }
+
+ else 
 {
-    header("Location: ../index.php");
-}
-if (isset($_POST['update_user_btn'])) {
-    $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $phone = mysqli_real_escape_string($con, $_POST['phone']);
-    $role_as = mysqli_real_escape_string($con, $_POST['role_as']);
-
-    // Truy vấn để kiểm tra email có trùng lặp không
-    $email_check_query = "SELECT * FROM users WHERE email='$email' AND id != '$user_id'";
-    $email_check_query_run = mysqli_query($con, $email_check_query);
-
-    if (mysqli_num_rows($email_check_query_run) > 0) {
-        $_SESSION['message'] = "Email đã tồn tại";
-        header("Location: edit_user.php?id=$user_id");
-        exit();
-    } else {
-        // Cập nhật thông tin người dùng
-        $update_query = "UPDATE users SET name='$name', email='$email', phone='$phone', role_as='$role_as' WHERE id='$user_id'";
-        $update_query_run = mysqli_query($con, $update_query);
-
-        if ($update_query_run) {
-            $_SESSION['message'] = "Cập nhật thông tin người dùng thành công";
-            header("Location: users.php");
-            exit();
-        } else {
-            $_SESSION['message'] = "Cập nhật thất bại";
-            header("Location: edit_user.php?id=$user_id");
-            exit();
-        }
-    }
-} else {
     header("Location: ../index.php");
 }
 ?>
