@@ -1,7 +1,5 @@
 Chào bạn!
 
-Dưới đây là phiên bản **README.md** đã được chỉnh sửa và bổ sung thêm hướng dẫn cài đặt **PHPMailer**, **Vulca(s)**, và **Autoload** cho dự án **E.Miu_Shop** của bạn.
-
 ---
 
 # E.Miu_Shop
