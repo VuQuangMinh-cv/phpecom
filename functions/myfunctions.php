@@ -1,5 +1,4 @@
 <?php
-
 include("../config/dbcon.php");
 
 function getAll($table)
@@ -9,7 +8,6 @@ function getAll($table)
     return $query_run = mysqli_query($con, $query);
 }
 
-// có thể coi là bảo mật, vì đổi id sản phẩm
 function getByID($table, $id)
 {
     global $con;
@@ -23,4 +21,25 @@ function redirect($url, $message)
     exit(); 
 }
 
+function getAllOrders()
+{
+    global $con;
+    $query = "SELECT * FROM orders WHERE status ='0' ";
+    return $query_run = mysqli_query($con, $query);
+}
+
+function getOrderHistory()
+{
+    global $con;
+    $query = "SELECT * FROM orders WHERE status !='0' ";
+    return $query_run = mysqli_query($con, $query);
+}
+
+function checkTrackingNoValid($trackingNo)
+{
+    global $con;
+
+    $query = "SELECT * FROM orders WHERE tracking_no='$trackingNo'";
+    return mysqli_query($con, $query);
+}
 ?>

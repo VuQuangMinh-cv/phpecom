@@ -12,7 +12,7 @@ include('../middleware/adminMiddleware.php');
                 <div class="card-header">
                     <h4>Products</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="products_table">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -45,7 +45,7 @@ include('../middleware/adminMiddleware.php');
                                                     <a href="edit-product.php?id=<?= $item['id']?>" class="btn btn-sm btn-primary">Edit</a>
                                                 </td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-sm btn-danger delete_product_btn" value="<?= $item['id']; ?>">Delete</button>
+                                                    <button type="button" class="btn btn-sm btn-danger delete_product_btn" value="<?= $item['id']; ?>">Delete</button>
                                                 </td>
                                             </tr>
                                         <?php

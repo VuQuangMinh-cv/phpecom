@@ -12,7 +12,7 @@ include('../middleware/adminMiddleware.php');
                 <div class="card-header">
                     <h4>Categories</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="category_table">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -42,10 +42,12 @@ include('../middleware/adminMiddleware.php');
                                                 </td>
                                                 <td>
                                                     <a href="edit-category.php?id=<?= $item['id']?>" class="btn btn-primary">Edit</a>
-                                                    <form action="code.php" method="POST">
+                                                    <!-- <form action="code.php" method="POST">
                                                         <input type="hidden" name="category_id" value="<?= $item['id']?>">
                                                         <button type="submit" class="btn btn-danger" name="delete_category_btn">Delete</button>
-                                                    </form>
+                                                    </form> -->
+                                                    <button type="button" class="btn btn-sm btn-danger delete_category_btn" value="<?= $item['id']; ?>">Delete</button>
+
                                                 </td>
 
                                             </tr>

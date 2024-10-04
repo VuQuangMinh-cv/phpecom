@@ -1,0 +1,7 @@
+ID	Tên	Email	Số điện thoại	Vai trò
+---------------------------------------------
+1	DHT222	vqmnbta@gmail.com	1231231231	Admin
+4	admin	vqmnbta2@gmail.com	1234567890	Admin
+5	Jonathan	vqmnbta3@gmail.com	1112223334	User
+6	test txt	vqmnbta4@gmail.com	1234567891	User
+7	Van Quang	vqmnbta5@gmail.com	323456671	User
