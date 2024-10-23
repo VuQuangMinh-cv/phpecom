@@ -22,6 +22,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="cart.php">Cart</a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="calculator.php">Calculator</a>
+                </li> -->
                 <?php
                 if (isset($_SESSION['auth'])) {
                     if ($_SESSION['role_as'] == 1) {
@@ -38,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="my-orders.php">My Orders</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="edit_profile.php">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                         </ul>
                     </li>

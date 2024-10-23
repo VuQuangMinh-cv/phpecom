@@ -160,14 +160,20 @@ if(isset($_GET['t']))
 
                                 if($data['status'] == 0)
                                 {
-                                    echo'Under Process';
-                                } else if($data['status'] == 1)
-                                {
-                                    echo'Completed';
-                                } else if($data['status'] == 2)
-                                {
-                                    echo'Canceled';
+                                    echo 'Under Process';
                                 } 
+                                else if($data['status'] == 1)
+                                {
+                                    echo 'Completed';
+                                } 
+                                else if($data['status'] == 2)
+                                {
+                                    echo 'Canceled';
+                                } 
+                                else if($data['status'] == 3)
+                                {
+                                    echo 'Pending';
+                                }
 
                              ?>
                          </div>

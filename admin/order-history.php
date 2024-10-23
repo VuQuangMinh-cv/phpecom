@@ -1,10 +1,7 @@
 <?php
-
 include("includes/header.php");
 include('../middleware/adminMiddleware.php');
-
 ?>
-
 
 <div class="container">
     <div class="row">
@@ -26,42 +23,54 @@ include('../middleware/adminMiddleware.php');
                                 <th>Date</th>
                             </tr>
                         </thead>
-                        <body>
+                        <tbody>
                         <?php
                         $orders = getOrderHistory();
 
                         if(mysqli_num_rows($orders) > 0) {
                             foreach($orders as $item) {
+                                $statusClass = '';
+                                switch($item['status']) {
+                                    case 1: // Completed
+                                        $statusClass = 'table-success'; 
+                                        break;
+                                    case 2: // Cancelled
+                                        $statusClass = 'table-danger'; 
+                                        break;
+                                    case 3: // Cancelled
+                                        $statusClass = 'table-danger'; 
+                                        break;   
+                                    default: // Under Process
+                                        $statusClass = 'table-warning'; 
+                                }
                                 ?>
-                                    <tr>
+                                <tr class="<?= $statusClass; ?>">
                                     <td><?= $item['id']; ?></td>
                                     <td><?= $item['name']; ?></td>
                                     <td><?= $item['tracking_no']; ?></td>
-                                        <td><?= $item['total_price']; ?></td>
-                                        <td><?= $item['created_at']; ?></td>
-                                        <td>
-                                            <a href="view-order.php?t=<?= $item['tracking_no']; ?>" class="btn btn-primary">View Details</a>
-                                        </td>
-
-                                    </tr>
+                                    <td><?= $item['total_price']; ?></td>
+                                    <td><?= $item['created_at']; ?></td>
+                                    <td>
+                                        <a href="view-order.php?t=<?= $item['tracking_no']; ?>" class="btn btn-primary">View Details</a>
+                                    </td>
+                                </tr>
                                 <?php
                             }
-                        }else{
+                        } else {
                             ?>
                             <tr>
-                                <td colspan="5">No orders yet</td>
+                                <td colspan="6">No orders yet</td>
                             </tr>
-                            <?php                        
-                            }
-                    ?>
-                            
-                        </body>
+                        <?php                        
+                        }
+                        ?>
+                        </tbody>
                     </table>
                     
                 </div>
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include("includes/footer.php") ?>

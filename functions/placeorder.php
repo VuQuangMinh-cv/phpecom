@@ -18,7 +18,7 @@ if(isset($_SESSION['auth'])) {
         $payment_id = isset($_POST['payment_id']) ? mysqli_real_escape_string($con, $_POST['payment_id']) : "";
 
         if($name == "" || $email == "" || $phone == "" || $pincode == "" || $address == "") {
-            $_SESSION['message'] = "All fields are mandatory";
+            $_SESSION['message'] = "Tất cả các trường đều bắt buộc";
             header("Location: ../checkout.php");
             exit(0);
         }
@@ -150,7 +150,8 @@ if(isset($_SESSION['auth'])) {
             }
         }
 
-        sendOrderConfirmationEmail($email, $name, $tracking_no, $order_details, $totalPrice);
+        // Cập nhật gọi hàm gửi email với các tham số mới
+        sendOrderConfirmationEmail($email, $name, $phone, $address, $tracking_no, $order_details, $totalPrice, $order_time);
 
         $deleteCartQuery = "DELETE FROM carts WHERE user_id='$userId'";
         $deleteCartQuery_run = mysqli_query($con, $deleteCartQuery);
@@ -160,7 +161,7 @@ if(isset($_SESSION['auth'])) {
 
         if($payment_mode == 'COD') {
             $_SESSION["message"] = "Đơn hàng đã được đặt thành công qua COD";
-            header("Location: ../my-orders.php");
+            header("Location: ../thankyou.php?order_id=$tracking_no");
             die();
         } else if($payment_mode == 'PayPal') {
             header("Location: ../thankyou.php?order_id=$tracking_no");

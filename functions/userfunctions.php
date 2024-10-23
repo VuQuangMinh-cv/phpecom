@@ -71,5 +71,24 @@ function redirect($url, $message)
     header('Location: '.$url);
     exit(0); 
 }
+function getCartItemById($cid) {
+    global $con; // Biến kết nối cơ sở dữ liệu
 
+    // Truy vấn để lấy chi tiết sản phẩm trong giỏ hàng dựa trên `cid`
+    $query = "SELECT c.*, p.name, p.selling_price, p.image 
+              FROM carts c 
+              INNER JOIN products p ON c.prod_id = p.id 
+              WHERE c.id = ?";
+    
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $cid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        return mysqli_fetch_assoc($result);
+    } else {
+        return null;
+    }
+}
     ?>

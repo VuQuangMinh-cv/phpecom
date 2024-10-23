@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
-        $(document).on('click','.increment-btn', function (e){
+    // Xử lý tăng số lượng sản phẩm
+    $(document).on('click','.increment-btn', function (e){
         e.preventDefault();
 
         var qty = $(this).closest('.product_data').find('.input-qty').val();
-
         var value = parseInt(qty, 10);
         value = isNaN(value) ? 0 : value;
         if(value < 10)
@@ -14,7 +14,8 @@ $(document).ready(function(){
         }
     });
 
-        $(document).on('click','.decrement-btn', function (e){
+    // Xử lý giảm số lượng sản phẩm
+    $(document).on('click','.decrement-btn', function (e){
         e.preventDefault();
 
         var qty = $(this).closest('.product_data').find('.input-qty').val();
@@ -27,12 +28,11 @@ $(document).ready(function(){
         }
     });
 
-        $(document).on('click','.addToCartBtn', function (e){
-
+    // Thêm sản phẩm vào giỏ hàng
+    $(document).on('click','.addToCartBtn', function (e){
         e.preventDefault();
 
         var qty = $(this).closest('.product_data').find('.input-qty').val();
-
         var prod_id = $(this).val();
         
         $.ajax({
@@ -44,14 +44,13 @@ $(document).ready(function(){
               'scope': 'add'
             },
             success: function(response){
-
                 if(response == 201)
                     {
-                        alertify.success('Product added to card');
+                        alertify.success('Product added to cart');
                     }
                 else if(response == "existing")
                     {
-                        alertify.success('Product already in card');
+                        alertify.success('Product already in cart');
                     }
                 else if(response == 401)
                     {
@@ -62,11 +61,11 @@ $(document).ready(function(){
                         alertify.success('Something went wrong');
                     }
             }
-          });
+        });
     });
 
+    // Cập nhật số lượng sản phẩm trong giỏ hàng
     $(document).on('click','.updateQty', function (){
-
         var qty = $(this).closest('.product_data').find('.input-qty').val();
         var prod_id = $(this).closest('.product_data').find('.prodId').val();
 
@@ -84,9 +83,9 @@ $(document).ready(function(){
         });
     });
     
+    // Xóa sản phẩm khỏi giỏ hàng
     $(document).on('click','.deleteItem', function (){
         var cart_id = $(this).val();
-        // alert(cart_id);
 
         $.ajax({
             method: "POST",
@@ -96,19 +95,45 @@ $(document).ready(function(){
               'scope': 'delete'
             },
             success: function(response){
-                // alert(response);
                 if(response == 200)
                     {
-                        alertify.success('Item deleted to successfully');
-                        // location.reload();
-                        $('#mycart').load(location.href +" #mycart")
+                        alertify.success('Item deleted successfully');
+                        $('#mycart').load(location.href +" #mycart");
                     }
                     else{
                         alertify.error(response);
                     }
             }
         });
+    });
 
+    // Xử lý gửi OTP
+    document.getElementById('send-otp-btn').addEventListener('click', function() {
+        const email = document.querySelector('input[name="email"]').value;
+        if (!email) {
+            alert('Vui lòng nhập email trước khi gửi OTP.');
+            return;
+        }
+
+        fetch('functions/send_otp.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('otp-info').textContent = 'Mã OTP đã được gửi đến email của bạn. Vui lòng kiểm tra.';
+            } else {
+                document.getElementById('otp-info').textContent = 'Có lỗi xảy ra khi gửi OTP. Vui lòng thử lại.';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('otp-info').textContent = 'Có lỗi xảy ra. Vui lòng thử lại.';
+        });
     });
 
 });

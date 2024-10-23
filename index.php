@@ -6,16 +6,18 @@ include("includes/slider.php");
 ?>
 <style>
    .product-image {
-      width: 100%;
+      width: 90%;
       height: 230px; 
-      object-fit: cover; 
+      object-fit: contain; 
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
    }
+
 </style>
 <div class="py-5">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <h4>Trending Products</h4>
+            <h4>Best-Seller</h4>
             <div class="underline mb-2"></div>
             <hr>
                <div class="owl-carousel">
@@ -45,8 +47,11 @@ include("includes/slider.php");
       </div>
    </div>
 </div>
+<br><br><br><br><br><br>
 
-   <div class="py-5 bg-f2f2f2">
+
+
+   <div class="py-3 bg-f2f2f2">
    <div class="container">
       <div class="row">
          <div class="col-md-12">

@@ -2,7 +2,6 @@
 include('includes/header.php');
 include('functions/userfunctions.php');
 
-
 if (isset($_GET['search']) || isset($_GET['price'])) {
     $searchTerm = $_GET['search'];
     $price = $_GET['price'];
@@ -10,7 +9,7 @@ if (isset($_GET['search']) || isset($_GET['price'])) {
     $cleanSearchTerm = str_replace('%', '', $searchTerm);
     
     $query = "SELECT * FROM products WHERE name LIKE ?";
-    $stmt = $con->prepare($query);
+    $stmt = $con->prepare($query); //prepared 
     $searchTerm = '%' . $searchTerm . '%';
     $stmt->bind_param("s", $searchTerm);
 
@@ -21,7 +20,8 @@ if (isset($_GET['search']) || isset($_GET['price'])) {
     }
 
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->get_result(); 
+    //htmlspecialchars
     ?>
     <div class="container mt-4">
         <h4>Kết quả tìm kiếm cho: <?= htmlspecialchars($cleanSearchTerm) ?></h4>
@@ -29,7 +29,7 @@ if (isset($_GET['search']) || isset($_GET['price'])) {
             <?php
             if ($result->num_rows > 0) {
                 while ($product = $result->fetch_assoc()) {
-                    echo '<div class="col-md-4 mb-3 text-center">';
+                    echo '<div class="col-md-2 mb-3 text-center">';
                     echo '<a href="product-view.php?product=' . htmlspecialchars($product['slug']) . '">'; 
                     echo '<div class="card shadow">';
                     echo '<img src="uploads/' . htmlspecialchars($product['image']) . '" alt="Product Image" class="img-fluid product-image shadow-sm">';
@@ -44,6 +44,7 @@ if (isset($_GET['search']) || isset($_GET['price'])) {
             }
             ?>
         </div>
+        <br><br><br><br><br><br>
     </div>
     <?php
 
@@ -52,5 +53,5 @@ if (isset($_GET['search']) || isset($_GET['price'])) {
     echo '<p>Vui lòng nhập thông tin tìm kiếm.</p>';
 }
 
-include('includes/footer.php');
-?>
+include("includes/footer.php");
+include("includes/about.php");?>

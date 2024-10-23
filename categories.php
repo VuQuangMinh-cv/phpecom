@@ -51,4 +51,7 @@ include("includes/header.php");
 </div>
 <!-- Optional JavaScript; choose one of the two! -->
 
-<?php include("includes/footer.php") ?>
+<?php
+ include("includes/footer.php");
+ include("includes/about.php");
+ ?>
